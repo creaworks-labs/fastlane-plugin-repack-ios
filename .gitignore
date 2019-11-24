@@ -10,3 +10,8 @@ fastlane/README.md
 fastlane/report.xml
 coverage
 test-results
+
+
+# gems
+.bundle
+vendor/

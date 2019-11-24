@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.email         = 'omer@duzyol.net'
 
   spec.summary       = 'Enables your build pipeline to repack your pre-built ipa with new assets without rebuilding the native code.'
-  # spec.homepage      = "https://github.com/<GITHUB_USERNAME>/fastlane-plugin-repack_ios"
+  spec.homepage      = "https://github.com/creaworks-labs/fastlane-plugin-repack-ios"
   spec.license       = "MIT"
 
   spec.files         = Dir["lib/**/*"] + %w(README.md LICENSE)
@@ -21,7 +21,7 @@ Gem::Specification.new do |spec|
   # Don't add a dependency to fastlane or fastlane_re
   # since this would cause a circular dependency
 
-  # spec.add_dependency 'your-dependency', '~> 1.0.0'
+  spec.add_dependency('zip')
 
   spec.add_development_dependency('pry')
   spec.add_development_dependency('bundler')
