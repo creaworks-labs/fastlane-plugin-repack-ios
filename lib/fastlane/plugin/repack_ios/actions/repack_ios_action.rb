@@ -1,4 +1,5 @@
 require 'fastlane/action'
+require 'gym'
 require_relative '../helper/repack_ios_helper'
 
 module Fastlane
@@ -29,6 +30,7 @@ module Fastlane
           UI.user_error!("Resolved ipa file: #{File.expand_path(ipa_path)} is not exists. Please provide ipa path.") unless File.exist?(ipa_path)
         else
           ipa_path = params[:ipa]
+          output_name = params[:output_name]
         end
 
         ipa_original_path = Helper::RepackIosHelper.unpack_and_repack(output_name, ipa_path, params[:contents])
@@ -174,6 +176,11 @@ module Fastlane
                                           UI.user_error!("Unsupported environment #{value}, must be in #{Match.environments.join(', ')}")
                                         end
                                       end),
+          FastlaneCore::ConfigItem.new(key: :output_name,
+                                      env_name: "FL_REPACK_IOS_OUTPUT_NAME",
+                                      description: "The name of the resulting app file inside the ipa file",
+                                      is_string: true,
+                                      optional: true),
           FastlaneCore::ConfigItem.new(key: :provisioning_profile,
                                       env_name: "FL_REPACK_IOS_PROVISIONING_PROFILE",
                                       description: "Path to your provisioning_profile. Optional if you use _sigh_ or _match_",
