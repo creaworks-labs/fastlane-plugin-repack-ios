@@ -34,7 +34,7 @@ You can also specify additional parameters to `repack_ios` action. Eg.
     ipa: "./build/ios/TestApp.ipa",
     contents: "./build/react-native/",
     match_type: "adhoc",  # Optional if you use _sigh_ or _match_
-    bundle_id: "com.creaworks.fastlane-app.repacked"
+    bundle_id: "com.creaworks.fastlane-app.repacked",
     bundle_version: ENV["CI_BUILD_NUMBER"]
   })
 ```
