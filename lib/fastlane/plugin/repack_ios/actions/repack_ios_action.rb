@@ -1,5 +1,6 @@
 require 'fastlane/action'
 require 'gym'
+require 'match'
 require_relative '../helper/repack_ios_helper'
 
 module Fastlane
