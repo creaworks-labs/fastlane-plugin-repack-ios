@@ -16,7 +16,7 @@ module Fastlane
         UI.message("Parameter Contents Path: #{params[:contents]}")
         UI.message("Parameter IPA Path: #{params[:ipa]}")
 
-        if params[:ipa].nil?
+        if params[:ipa].nil? || params[:output_name].nil?
           UI.important("Parameter ipa is empty, trying to resolve Gym configuration...")
 
           Gym.config = FastlaneCore::Configuration.create(Gym::Options.available_options, {})
