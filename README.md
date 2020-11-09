@@ -24,7 +24,7 @@ You can use this plugin to modify your react-native js bundle without re-compili
 The only requires arguments are *ipa* path for the pre-built package and *contents* path for the resources that would like to replace. Basic usage as follows:
 
 ```ruby
-  repack_ios({ ipa: "./build/ios/TestApp.ipa", contents: "./build/react-native/" })
+  repack_ios({ ipa: "./build/ios/TestApp.ipa", output_name: "TestApp", contents: "./build/react-native/" })
 ```
 
 You can also specify additional parameters to `repack_ios` action. Eg.
@@ -44,6 +44,7 @@ You can also specify additional parameters to `repack_ios` action. Eg.
 | Key           | Description           | Default  |
 | ------------- |-----------------------| --------|
 | ipa | Path to your original ipa file to modify | *Required* |
+| output_name | The product name of the Xcode target | *Required* |
 | contents | Path for the new contents | *Required* |
 | app_identifier | The bundle identifier of your app | Default value read from Appfile's app_identifier key |
 | entitlements | Path to the entitlement file to use, e.g. `myApp/MyApp.entitlements`| Default value can be resolved from *sigh* |
