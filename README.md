@@ -4,6 +4,7 @@
 [![Gem Version](https://badge.fury.io/rb/fastlane-plugin-repack_ios.svg)](https://badge.fury.io/rb/fastlane-plugin-repack_ios)
 [![Downloads](https://img.shields.io/gem/dt/fastlane-plugin-repack_ios.svg?style=flat)](https://rubygems.org/gems/fastlane-plugin-repack_ios)
 [![License](https://img.shields.io/badge/license-MIT-green.svg?style=flat)](https://github.com/creaworks-labs/fastlane-plugin-repack-ios/blob/master/LICENSE)
+[![creaworks-labs](https://circleci.com/gh/creaworks-labs/fastlane-plugin-repack-ios.svg?style=svg)](<LINK>)
 
 ## Getting Started
 
