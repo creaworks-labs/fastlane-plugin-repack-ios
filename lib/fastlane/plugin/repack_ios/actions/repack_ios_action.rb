@@ -40,9 +40,11 @@ module Fastlane
 
         sigh_profile_type = Actions.lane_context[SharedValues::SIGH_PROFILE_TYPE]
 
-        unless sigh_profile_type.nil?
-          UI.important("Match type parameters obtained from sigh profile context!")
-          params[:match_type] = sigh_profile_type.sub!('-', '')
+        if params[:match_type].nil?
+          unless sigh_profile_type.nil?
+            UI.important("Match type parameters obtained from sigh profile context!")
+            params[:match_type] = sigh_profile_type.sub!('-', '')
+          end
         end
 
         # check match_type is passed?
