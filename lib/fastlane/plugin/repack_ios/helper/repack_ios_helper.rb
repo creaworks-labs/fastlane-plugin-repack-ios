@@ -51,7 +51,8 @@ module Fastlane
 
     class RepackIosHelper
       def self.get_signing_identity_from_provision_profile(provisioning_profile)
-        parsed_provision = FastlaneCore::ProvisioningProfile.parse(provisioning_profile)
+        first_provisioning_profile_key, first_provisioning_profile_value = provisioning_profile.first
+        parsed_provision = FastlaneCore::ProvisioningProfile.parse(first_provisioning_profile_value)
 
         cert = OpenSSL::X509::Certificate.new(parsed_provision["DeveloperCertificates"].first.string)
 

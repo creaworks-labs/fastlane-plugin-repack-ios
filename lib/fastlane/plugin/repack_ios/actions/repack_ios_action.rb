@@ -53,24 +53,48 @@ module Fastlane
 
           UI.message("Parameter Match Type: #{params[:match_type]}")
 
-          provisioning_profile_key = "sigh_#{params[:app_identifier]}_#{match_type}_profile-path"
-          # check if match has been executed before for the given app_identifier?
-          if ENV[provisioning_profile_key].nil?
+          UI.message("Resolving provisioning profile using: #{params[:app_identifier]}")
 
-            UI.message("Trying to match certificates with given type...")
+          if !params[:app_identifier].nil?
+            provisioning_profile=Hash.new()
+            if (params[:app_identifier].is_a? String)
+              provisioning_profile[params[:app_identifier]] = ENV["sigh_#{params[:app_identifier]}_#{match_type}_profile-path"]
+            else
+              params[:app_identifier].each do |identifier|
+                provisioning_profile[identifier] = ENV["sigh_#{identifier}_#{match_type}_profile-path"]
+              end
+            end
 
-            other_action.match(
-              type: match_type,
-              readonly: true
-            )
+            # check if match has been executed before for the given app_identifier?
+            if provisioning_profile.nil?
+  
+              UI.message("Trying to match certificates with given type...")
+  
+              other_action.match(
+                type: match_type,
+                readonly: true
+              )
+            end
           end
-
-          # read the provisioning_profile from sigh
-          provisioning_profile = ENV[provisioning_profile_key]
-
         # otherwise, check provisioning_profile is not passed?
         elsif !params[:provisioning_profile].nil?
           UI.message("Parameter Provisioning Profile: #{params[:provisioning_profile]}")
+          provisioning_profile = params[:provisioning_profile]
+        end
+
+        if provisioning_profile.nil?
+          match_profiles = Actions.lane_context[SharedValues::MATCH_PROVISIONING_PROFILE_MAPPING]
+
+          puts match_profiles
+
+          UI.message("Auto-resolving provisioning profiles using match... #{match_profiles}")
+
+          provisioning_profile=Hash.new()
+          match_profiles.each do |pair|
+            provisioning_profile[pair[0]] = ENV["sigh_#{pair[0]}_#{match_type}_profile-path"]
+          end
+
+          puts provisioning_profile
         end
 
         UI.message("Resolving signing identity from provisioning profile...")
